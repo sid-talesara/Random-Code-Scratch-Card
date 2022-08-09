@@ -115,6 +115,10 @@
       /* top: 20px !important; */
       margin: 50px;
     }
+
+    .min-purchase-panel {
+      font-size: 12px;
+    }
   </style>
 
 </head>
@@ -128,6 +132,7 @@
     <div class="coupon-code-section">
       <h1 class="coupon-msg">Hurray! Here is your coupon🎉</h1>
       <h2 class="coupon-code" id="coupon-code">--CODE--</h2>
+      <p class="min-purchase-panel"></p>
       <button class="copy-button" onclick="myFunction()">Copy</button>
 
 
@@ -259,13 +264,48 @@
 
     // const couponCode = document.querySelector('.coupon-code');
     // all coupons
-    const coupon = ['LLA05', 'LLA10', 'LLA15', 'LLA20', 'LPTI50', 'SALE50', 'MONSOON15'];
+    const coupon = ['LLA5', 'LLA10', 'LLA15', 'LLA20', 'LLA30', 'LLA40', 'LLA50'];
     // coupon generator function
     const couponGenerator = function () {
       // random array index generator
       const randomOrderNumber = Math.trunc(Math.random() * 6);
       // updating the text value with that random value of array [index]
       const couponIntoString = document.querySelector('.coupon-code').textContent = coupon[randomOrderNumber];
+      // condition for showing amount
+      const couponCodeVariable = coupon[randomOrderNumber];
+      switch (couponCodeVariable) {
+        case 'LLA5':
+          console.log('5');
+          document.querySelector('.min-purchase-panel').textContent = '';
+          break;
+        case 'LLA10':
+          console.log('10');
+          document.querySelector('.min-purchase-panel').textContent = '';
+          break;
+        case 'LLA15':
+          console.log('15');
+          document.querySelector('.min-purchase-panel').textContent = 'Minimum cart value ₹490';
+          break;
+        case 'LLA20':
+          console.log('20');
+          document.querySelector('.min-purchase-panel').textContent = 'Minimum cart value ₹2000';
+          break;
+        case 'LLA30':
+          console.log('30');
+          document.querySelector('.min-purchase-panel').textContent = 'Minimum cart value ₹3500';
+          break;
+        case 'LLA40':
+          console.log('40');
+          document.querySelector('.min-purchase-panel').textContent = 'Minimum cart value ₹5000';
+          break;
+        case 'LLA50':
+          console.log('50');
+          document.querySelector('.min-purchase-panel').textContent = 'Minimum cart value ₹8990';
+          break;
+        default:
+          // document.querySelector('.min-purchase-panel').textContent = '';
+          console.log(`Sorry, we are out of ${couponCodeVariable}.`);
+      }
       // Copy button function
       navigator.clipboard.writeText(couponIntoString);
     }
